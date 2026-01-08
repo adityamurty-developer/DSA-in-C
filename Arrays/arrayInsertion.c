@@ -1,43 +1,58 @@
 #include <stdio.h>
 
 int main() {
-    int a[10], size, i, num, pos;
+    int a[10];       
+    int size, i, num, pos;
 
-    printf("Enter size of array (max 9): ");
+    // Input size and array elements
+    printf("Enter current size of array : ");
     scanf("%d", &size);
 
-    if(size >= 10) {
-        printf("Array is full, insertion not possible.\n");
+    if(size > 10) {
+        printf("Size exceeds array capacity!\n");
         return 0;
     }
 
-    printf("Enter elements of array:\n");
+    printf("Enter %d elements: ", size);
     for(i = 0; i < size; i++) {
         scanf("%d", &a[i]);
     }
 
-    printf("Enter data you want to insert: ");
+    // Input element to insert and position
+    printf("Enter the element to insert: ");
     scanf("%d", &num);
 
-    printf("Enter position (1 to %d): ", size + 1);
+    printf("Enter the position to insert: ");
     scanf("%d", &pos);
 
+    // Validate position and capacity
     if(pos < 1 || pos > size + 1) {
         printf("Invalid position!\n");
         return 0;
     }
 
-    for(i = size - 1; i >= pos - 1; i--) {
+    if(size == 10) {
+        printf("Array is full, cannot insert!\n");
+        return 0;
+    }
+
+    int index = pos - 1;  // Convert position to array index
+
+    // Right shift elements to make space
+    for(i = size - 1; i >= index; i--) {
         a[i + 1] = a[i];
     }
 
-    a[pos - 1] = num;
-    size++;
+    // Insert the element
+    a[index] = num;
+    size++;  // Update size
 
-    printf("Array after insertion:\n");
+    printf("Array after insertion: ");
     for(i = 0; i < size; i++) {
         printf("%d ", a[i]);
     }
+    printf("\n");
 
     return 0;
 }
+
