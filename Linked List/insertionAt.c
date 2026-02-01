@@ -43,7 +43,7 @@ int main(){
 
     temp=head;
     i=1;
-    while(i<pos){
+    while(i<pos-1){
         temp=temp->next;
         i++;
     }
